@@ -1,0 +1,156 @@
+/* Сброс дефолтных отступов */
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    font-family: Arial, sans-serif; 
+    background: #333; /* Тёмно-серый фон для потёмнения */
+    color: #EEE; /* Светлый текст для читаемости */
+}
+
+header { 
+    background: linear-gradient(to right, #1C2833, #000); /* Градиент для выделения шапки: тёмно-синий к чёрному */
+    color: #EEE; 
+    padding: 10px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Тень для глубины */
+}
+
+.logo img { max-width: 150px; animation: fadeIn 1s; }
+.menu ul { list-style: none; display: flex; margin: 0; padding: 0; }
+.menu li { margin: 0 10px; }
+.menu a { color: #EEE; text-decoration: none; transition: color 0.3s; }
+.menu a:hover { color: #BBB; /* Сдержанный светло-серый hover */ }
+.hamburger { display: none; cursor: pointer; font-size: 24px; color: #EEE; }
+.selectors { display: flex; align-items: center; }
+select, input { margin: 5px; padding: 5px; border-radius: 5px; border: 1px solid #555; background: #444; color: #EEE; }
+#search { width: 300px; /* Увеличенное поле поиска */ } /* Больше размер */
+button { background: #555; /* Тёмно-серый для кнопок */ color: #EEE; border: none; padding: 5px 10px; cursor: pointer; transition: background 0.3s; }
+button:hover { background: #777; /* Сдержанный hover */ }
+.socials { display: flex; align-items: center; }
+.socials a { margin: 0 5px; } /* Компактные иконки без текста */
+.socials img { width: 32px; transition: transform 0.3s; }
+.socials img:hover { transform: scale(1.2); }
+
+/* Стили для кнопки "Сотрудничество" */
+.cooperation-btn {
+    background: linear-gradient(to right, #F5F5DC, #E0DABF); /* Исходный градиент */
+    color: #228B22;
+    border-radius: 20px; /* Закруглённая */
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition без background */
+}
+.cooperation-btn:hover {
+    background: linear-gradient(to right, #F5F5DC, #E0DABF); /* Сохраняем тот же градиент, без смены на серый */
+    transform: scale(1.05); /* Лёгкое увеличение (уберите, если не нужно) */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Тень (уберите, если не нужно) */
+}
+
+/* Hero с parallax и отступом сверху для компенсации header */
+.hero { 
+    background: linear-gradient(to bottom, #444, #333); /* Градиент для потёмнения hero */
+    color: #EEE; 
+    text-align: center; 
+    padding: 50px; 
+    position: relative; 
+    overflow: hidden; 
+    padding-top: 130px; /* 80px (header) + 50px */
+}
+.parallax-img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.5s; }
+.hero:hover .parallax-img { transform: scale(1.1); }
+
+/* Категории и продукты */
+.category-grid, .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; background: #333; }
+.category-card, .product-card { background: #444; /* Тёмный фон карточек */ border: 1px solid #555; border-radius: 10px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; animation: fadeIn 1s; color: #EEE; }
+.category-card:hover, .product-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.5); transform: translateY(-5px); }
+.category-card img, .product-card img { width: 100%; height: 200px; object-fit: cover; }
+h2, h3 { text-align: center; color: #EEE; }
+
+/* Анимации */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Админ */
+#login, #admin-panel { padding: 20px; background: #444; margin: 20px; border-radius: 10px; color: #EEE; }
+.hidden { display: none; }
+form { display: flex; flex-direction: column; max-width: 300px; margin: auto; }
+form input, form select, form textarea { margin: 5px 0; padding: 5px; border-radius: 5px; border: 1px solid #555; background: #333; color: #EEE; }
+form textarea { height: 100px; }
+
+/* Стили для админ-списка */
+.admin-product-item {
+    background: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #EEE;
+}
+.admin-product-item button {
+    background: #555;
+    color: #EEE;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.admin-product-item button:hover {
+    background: #777;
+}
+
+/* Модальное окно для сотрудничества */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Более тёмный фон для потёмнения */
+}
+.modal-content {
+    background-color: #444;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #555;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    color: #EEE;
+}
+.modal-content button {
+    margin: 10px;
+    background: #555;
+    color: #EEE;
+}
+.modal-content button:hover {
+    background: #777;
+}
+
+/* Responsive для мобильных */
+@media (max-width: 768px) {
+    .hero { 
+        padding: 20px; 
+        padding-top: 200px; 
+    }
+    .menu ul { display: none; flex-direction: column; background: linear-gradient(to right, #1C2833, #000); position: absolute; top: 100%; left: 0; width: 100%; z-index: 999; }
+    .menu ul.show { display: flex; }
+    .hamburger { display: block; }
+    header { flex-direction: column; }
+    .selectors { flex-direction: column; }
+    .parallax-img { height: 200px; }
+    #search { width: 100%; /* Полная ширина на мобильных */ }
+    .cooperation-btn { margin: 10px 0; /* Адаптация для мобильных */ }
+}

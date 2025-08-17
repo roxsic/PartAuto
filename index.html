@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part Auto - Мебель и Запчасти от Волги</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" src="images/а.ico" type="image/x-icon"> <!-- Пример иконки; замените -->
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/ramalogo.png" alt="Part Auto">
+        </div>
+        <nav class="menu">
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#categories">Категории</a></li>
+                <li><a href="#parts">Запчасти</a></li>
+                <li><a href="#furniture">Мебель</a></li>
+                <li><a href="#" onclick="enterAsClient()">Я клиент</a></li>
+                <li><a href="#" onclick="enterAsAdmin()">Я администратор</a></li>
+                <li><button class="cooperation-btn" onclick="openCooperationModal()">Сотрудничество</button></li> <!-- Передвинутая и стилизованная кнопка -->
+            </ul>
+        </nav>
+        <div class="selectors">
+            <select id="city-select">
+                <option>Выберите город</option>
+                <option>Москва</option>
+                <option>Санкт-Петербург</option>
+                <option>Нижний Новгород</option>
+            </select>
+            <select id="car-select">
+                <option>Выберите модель Волги</option>
+                <option>ГАЗ-21</option>
+                <option>ГАЗ-24</option>
+                <option>ГАЗ-3102</option>
+            </select>
+            <input type="text" id="search" placeholder="Поиск запчастей или мебели...">
+            <button onclick="searchItems()">Поиск</button>
+        </div>
+        <div class="socials">
+            <a href="https://vk.com"><img src="images/vk.ico" alt="VK" title="VK"></a> <!-- Только иконка, с title для подсказки -->
+            <a href="https://instagram.com"><img src="images/inst.ico" alt="Instagram" title="Instagram"></a>
+            <a href="https://telegram.org"><img src="images/tg.ico" alt="Telegram" title="Telegram"></a>
+        </div>
+    </header>
+
+    <!-- Модальное окно для сотрудничества -->
+    <div id="cooperation-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Оставить сообщение о сотрудничестве</h2>
+            <form id="cooperation-form">
+                <input type="text" id="coop-name" placeholder="Ваше имя">
+                <input type="email" id="coop-email" placeholder="Ваш email">
+                <textarea id="coop-message" placeholder="Ваше сообщение"></textarea>
+                <button type="button" onclick="sendCooperationMessage()">Отправить</button>
+                <button type="button" onclick="closeCooperationModal()">Закрыть</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="home" class="hero">
+        <h1>Volga Vintage: Мебель из Волги и Оригинальные Запчасти</h1>
+        <p>Уникальная мебель из переработанных частей легендарной Волги и редкие запчасти для коллекционеров.</p>
+        <img src="https://source.unsplash.com/random/800x400/?car+volga" alt="Volga Car" class="parallax-img">
+    </section>
+
+    <section id="categories">
+        <h2>Категории</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="filterByCategory('furniture')">
+                <img src="https://source.unsplash.com/random/300x200/?furniture" alt="Мебель">
+                <h3>Мебель из Волги</h3>
+            </div>
+            <div class="category-card" onclick="filterByCategory('parts')">
+                <img src="https://source.unsplash.com/random/300x200/?car+parts" alt="Запчасти">
+                <h3>Запчасти Волги</h3>
+            </div>
+            <div class="category-card" onclick="filterByCategory('cars')">
+                <img src="https://source.unsplash.com/random/300x200/?car" alt="Автомобили">
+                <h3>Автомобили</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Товары</h2>
+        <div id="product-list" class="product-grid"></div>
+    </section>
+
+    <section id="login" class="hidden">
+        <h2>Авторизация Администратора</h2>
+        <form id="admin-login">
+            <input type="text" id="username" placeholder="Логин"> <!-- Пустое поле -->
+            <input type="password" id="password" placeholder="Пароль"> <!-- Пустое поле -->
+            <button type="button" onclick="loginAdmin()">Войти</button>
+        </form>
+    </section>
+
+    <section id="admin-panel" class="hidden">
+        <h2>Админ-Панель: Добавить Товар</h2>
+        <form id="add-product" enctype="multipart/form-data">
+            <input type="text" id="product-name" placeholder="Название товара">
+            <input type="text" id="product-desc" placeholder="Описание">
+            <input type="number" id="product-price" placeholder="Цена (RUB)">
+            <input type="file" id="product-images" multiple accept="image/*">
+            <select id="product-category">
+                <option>Категория: Мебель</option>
+                <option>Категория: Запчасти</option>
+                <option>Категория: Автомобили</option>
+            </select>
+            <select id="product-status">
+                <option>Статус: В наличии</option>
+                <option>Статус: Под заказ</option>
+            </select>
+            <button type="button" onclick="addProduct()">Добавить</button>
+        </form>
+        <h2>Список Товаров (для удаления)</h2>
+        <div id="admin-product-list"></div>
+        <button onclick="logoutAdmin()">Выйти</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Volga Vintage. Все права защищены.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
